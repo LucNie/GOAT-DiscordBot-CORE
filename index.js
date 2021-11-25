@@ -36,5 +36,4 @@ client.on('message',message => {
         message.reply("Une erreur s'est produite pendant l'exécution de la commande :/");
     }
  })
-
 client.login(token);

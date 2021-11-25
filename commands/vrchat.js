@@ -8,6 +8,20 @@ module.exports = {
     cooldown: 30,
 
     execute(message, args) {
+
+        // if(args.lenth > 0){
+        //     var txt = "";
+
+        //     for (var i = 0; i < args.lenth; i++){
+        //         txt = txt + ` ${args[i].toString()}`;
+        //     }
+
+
+        // }
+
+       return message.channel.send(message.author.username+", Commande bloquée (risque de ban vrchat a cause de l'api)");
+
+
         const vrchat = require("vrchat");
  
         const configuration = new vrchat.Configuration({
