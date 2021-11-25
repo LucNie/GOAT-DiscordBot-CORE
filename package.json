@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "node-color-log": "^7.0.0",
+    "vrchat": "^1.5.3"
+  }
+}
