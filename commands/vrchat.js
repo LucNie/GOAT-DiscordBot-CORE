@@ -1,6 +1,6 @@
 const { report } = require("process");
 const { MessageEmbed } = require('discord.js');
-const { vrchatLogin } = require('./Config.json');
+const { vrchatLogin } = require('../config.json');
 
 module.exports = {
     name: 'vrchat',
