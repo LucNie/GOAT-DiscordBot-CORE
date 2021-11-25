@@ -1,4 +1,3 @@
-const { report } = require("process");
 const { MessageEmbed } = require('discord.js');
 const { vrchatLogin } = require('../config.json');
 

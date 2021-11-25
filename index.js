@@ -17,8 +17,7 @@ for (const file of commandfFiles){
 client.once('ready' , () => {
     console.log('Connexion réusite !');
     
-    client.user.setActivity('renforcer les murs du dongeon');
-    
+    client.user.setActivity('v0.1a');
 });
 
 client.on('message',message => {
