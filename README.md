@@ -18,8 +18,8 @@
         "5":"Owner"
     },
     "vrchatLogin":{
-        "username":"YOUR_VRCHAT_USERNAME",
-        "password":"YOUR_VRCHAT_PASSWORD"
+        "username":"Not_USED",
+        "password":"NOT_USED"
     }
 } 
 ```
