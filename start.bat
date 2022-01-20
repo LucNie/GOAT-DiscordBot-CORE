@@ -1,3 +1,3 @@
 @echo on
-node index.js
+npm start
 pause

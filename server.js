@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+var colors = require('colors');
 
 const { prefix , token } = require('./config.json');
 
@@ -30,6 +31,7 @@ client.on('message',message => {
 
     try {
         client.commands.get(command).execute(message, args);
+        console.log("[INFO][USER_COMMAND]L'utilisateur : " + message.author.username .green+ " | Commande: " + message.content .green)
     }
     catch (error) {
         console.error(error);

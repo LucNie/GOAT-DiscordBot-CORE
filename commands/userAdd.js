@@ -1,13 +1,15 @@
+
+const { images } = require('../config.json');
 const fs = require('fs');
 module.exports = {
-    name: 'adduser',
+    name: 'new',
     description: 'Ajoute un utilisateur',
     level: 3, //modo
   
     execute(message, args) {
 
       if(args[0] < 0 || args[0] > 5){
-        message.channel.send("Le niveau d'acréditation ne doit pas etre supérieure a 5 !");
+        message.reply("Le niveau d'acréditation ne doit pas etre supérieure a 5!");
         return;
       }
 
@@ -15,7 +17,7 @@ module.exports = {
 
         try {
           if (fs.existsSync(path)) {
-            return message.channel.send("l'utilisateur "+ message.author.username + " existe deja!")//file exists
+            return message.reply("l'utilisateur "+ message.author.username + " existe deja!")//file exists
           }
         } catch(err) {
           console.error(err)
@@ -28,6 +30,8 @@ module.exports = {
             this.inventaire= [];
             this.class = "employer";
             this.race= "Unknown";
+            this.profilePicture = "profilePicture";
+            this.logo = images.GOAT;   
             this.bio= "";
             this.statue="hello i'm new";
             this.status="free";//work//busy...
@@ -46,12 +50,8 @@ module.exports = {
             this.chance= 1;
       }
 
-
-
-
-
       eval("var user_"+message.author.id+" = new User('"+message.author.username+"', "+args[0]+");")
-      message.channel.send(eval("user_"+message.author.id+".name"));
+      message.reply('votre compte a été crer avec succes, commande disponnible : \ profil ');
 
       fs.writeFile('users/user_'+message.author.id+'.json', JSON.stringify(eval("user_"+message.author.id)), (err) => {  
         // Catch this!
