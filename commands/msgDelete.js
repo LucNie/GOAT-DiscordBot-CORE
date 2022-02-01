@@ -38,7 +38,7 @@ module.exports = {
 
 
 
-  const fs = require('fs');
+const fs = require('fs');
 function levelVerif(id, alevel) {
     const jsonUser = "../users/user_"+id+".json";
     const user_data_row  = require(jsonUser);
