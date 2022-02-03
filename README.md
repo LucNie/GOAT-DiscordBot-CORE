@@ -19,9 +19,9 @@
         "5":"Owner"
     },
     "vrchatLogin":{
-        "username":"Not_USED",
+        "username":"NOT_USED",
         "password":"NOT_USED"
     }
 } 
 ```
-4.run ```node index.js``` for stating the bot
+4.run ```npm start``` for stating the bot
