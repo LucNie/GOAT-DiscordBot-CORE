@@ -1,5 +1,5 @@
 # GOAT-CORE-discord-bot
-##installation.
+## installation.
 
 1.you need the last version of node.js.
 
@@ -9,19 +9,11 @@
 ``` 
 {
     "prefix": "!" ,
-    "token": "YOUR_TOKEN_HERE !",
-    "level":{
-        "0":"Visiteur",
-        "1":"Nouveau",  
-        "2":"User",
-        "3":"Modérateur",
-        "4":"Admin",
-        "5":"Owner"
-    },
-    "vrchatLogin":{
-        "username":"NOT_USED",
-        "password":"NOT_USED"
-    }
+    "token": "YOUR_TOKEN_HERE !"
 } 
 ```
-4.run ```npm start``` for stating the bot
+4.run ```npm start``` for stating the bot.
+## TO-DO-LIST
+
+- create a SDK support.
+- improve modules gestions.
