@@ -1,4 +1,7 @@
 # GOAT-CORE-discord-bot
+![alt text](https://http.cat/204)
+
+
 ## installation.
 
 1.you need the last version of node.js.
