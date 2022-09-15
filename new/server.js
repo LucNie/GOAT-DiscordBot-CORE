@@ -1,8 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, ActivityType } = require('discord.js');
 const token = "token :3"
+const dataController = require("./core/dataController");
 
 const client = global.client = new Discord.Client({
     intents: 0, //please use eNums as of v14.
@@ -19,6 +20,7 @@ const _folders = fs.readdirSync(path.join(__dirname, './modules'));
 _folders.forEach(folder => {
     const _files = fs.readdirSync(path.join(__dirname, './modules', folder));
     exCommands[folder.toLocaleLowerCase()] = {};
+    dataController.newModules(folder.toLocaleLowerCase());
     var _data = new SlashCommandBuilder()
         .setName(folder.toLowerCase())
         .setDescription('Commande de ' + folder);
@@ -26,18 +28,26 @@ _folders.forEach(folder => {
         //add all commands filles from folder to commands
         const _command = require(path.join(__dirname, './modules', folder, file));
        //add subcommand
+        if(file != "init.js"){
        exCommands[folder.toLocaleLowerCase()][file.split('.')[0]] = _command;
         _data.addSubcommand(subcommand =>
             subcommand
                 .setName(_command.name)
                 .setDescription(_command.description)
         );
+        }else{
+
+        }
     });
     commands.push(_data);
 });
-
 client.on('ready', () => {
     console.log("Bot is ready!");
+
+    client.user.setPresence({
+        activities: [{ name: `discord.js v14`, type: ActivityType.Playing }],
+        status: 'dnd',
+      });
 
     //register all commands
     client.application.commands.set(commands);
@@ -48,13 +58,16 @@ client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
     const { commandName } = interaction;
     const command = client.commands.get(commandName);
-    if (!command) return;
+    // if (!command) return;
     try {
-        await exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction);
+        console.log("bam");
+        await exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction,dataController);
     } catch (error) {
         console.error(error);
         await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
 });
+
+
 
 client.login(token);
