@@ -1,0 +1,39 @@
+{
+    "version": "0.0.1",
+    "327092234711465984": {
+        "id": "0",
+        "name": "Galaxy",
+        "race": "Terran",
+        "level": "0",
+        "xp": "0",
+        "money": "0",
+        "inventory": [
+            {
+                "id": "0",
+                "customName": null,
+                "amount": "0"
+            }
+        ],
+        "stats": {
+            "strength": "10",
+            "perception": "10",
+            "endurance": "10",
+            "charisma": "10",
+            "intelligence": "10",
+            "agility": "10",
+            "luck": "10"
+        },
+        "skills": {
+            "god": 1
+        },
+        "quests": {
+            "be_a_god": 1
+        },
+        "achievements": {
+            "be_a_god": 1
+        },
+        "groups": {},
+        "friends": {},
+        "guilds": {}
+    }
+}

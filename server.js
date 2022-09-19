@@ -1,41 +1,73 @@
-const fs = require('fs');
-const Discord = require('discord.js');
-var colors = require('colors');
+const fs = require("fs");
+const path = require("path");
+const Discord = require("discord.js");
+const { SlashCommandBuilder, ActivityType } = require('discord.js');
+const token = "NzQ2NDQ2Nzc0MjIyMTkyNzEw.GThxkG.0RTPYDgql3LVrOeYrJkQqOTCUtQ4RLp0m91AcA"
+const dataController = require("./core/dataController");
 
-const { prefix , token } = require('./config.json');
-
-const client = new Discord.Client();
-client.commands = new Discord.Collection();
-
-const commandfFiles = fs.readdirSync('./Commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandfFiles){
-    const command = require(`./Commands/${file}`);
-    client.commands.set(command.name, command);
-
-}
-
-client.once('ready' , () => {
-    console.log('Connexion réusite !');
-    
-    client.user.setActivity('v0.1a');
+const client = global.client = new Discord.Client({
+    intents: 0, //please use eNums as of v14.
 });
 
-client.on('message',message => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+client.commands = global.commands = new Discord.Collection();
 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
+var commands = []; // Array of commands
+var exCommands = {}; // Object of commands
 
-    if (!client.commands.has(command)) return;
+//update commands with all folder with commands in it : dossier.commands
 
+const _folders = fs.readdirSync(path.join(__dirname, './modules'));
+_folders.forEach(folder => {
+    const _files = fs.readdirSync(path.join(__dirname, './modules', folder)).filter(file => file.endsWith('.js'));
+    exCommands[folder.toLocaleLowerCase()] = {};
+    dataController.newModules(folder.toLocaleLowerCase());
+    var _data = new SlashCommandBuilder()
+        .setName(folder.toLowerCase())
+        .setDescription('Commande de ' + folder);
+    _files.forEach(file => {
+        //add all commands filles from folder to commands
+        const _command = require(path.join(__dirname, './modules', folder, file));
+       //add subcommand
+        if(file != "init.js"){
+       exCommands[folder.toLocaleLowerCase()][file.split('.')[0]] = _command;
+        _data.addSubcommand(subcommand =>
+            subcommand
+                .setName(_command.name)
+                .setDescription(_command.description)
+        );
+        }else{
+
+        }
+    });
+    commands.push(_data);
+});
+client.on('ready', () => {
+    console.log("Bot is ready!");
+
+    client.user.setPresence({
+        activities: [{ name: `discord.js v14`, type: ActivityType.Playing }],
+        status: 'dnd',
+      });
+
+    //register all commands
+    client.application.commands.set(commands);
+});
+
+client.on('interactionCreate', async interaction => {
+   console.log("{IFNO} [interactionCreate] message recu de " + interaction.user.username + " : " + interaction.commandName + " " + interaction.options.getSubcommand());
+    if (!interaction.isCommand()) return;
+    const { commandName } = interaction;
+    const command = client.commands.get(commandName);
+    // if (!command) return;
     try {
-        client.commands.get(command).execute(message, args);
-        console.log("[INFO][USER_COMMAND]L'utilisateur : " + message.author.username .green+ " | Commande: " + message.content .green)
-    }
-    catch (error) {
+        console.log("bam");
+        await exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction,dataController);
+    } catch (error) {
         console.error(error);
-        message.reply("Une erreur s'est produite pendant l'exécution de la commande :/");
+        await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
     }
- })
+});
+
+
+
 client.login(token);
