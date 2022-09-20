@@ -6,7 +6,13 @@ module.exports = {
     name: 'init', 
     description: 'init',
     async execute(interaction,dataController) {
-
-        dataController.updateMainModulesData("tp",{users:BAKusers,instance:BAKinstance});
+        if (typeof(dataController.mainData["tp"]) == "undefined"){
+            dataController.newModules("tp")
+        }else if(typeof(dataController.mainData["tp"].users) == "undefined"){
+            dataController.mainData["tp"].users = {}
+        }else if(typeof(dataController.mainData["tp"].instance) == "undefined"){
+            dataController.mainData["tp"].instance = {}
+        }
     }
+    
 }
