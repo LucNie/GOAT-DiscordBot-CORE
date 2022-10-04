@@ -1,0 +1,22 @@
+{
+    "id": "3",
+    "name": "old exMachina body",
+    "type": "body",
+    "description": "",
+    "durability": 730,
+    "consommation": {
+        "energy": 125
+    },
+    "connecteur":[
+        "exMachina_head_old_explorer",
+        "exMachina_head_old_universal",
+        "exMachina_head_old_eco"
+    ],
+    "rarity": "uncommon",
+    "tier":1,
+    "price": -1,
+    "icon": "part_head_exMachina_old_explorer.png",
+    "stats":{
+    },
+    "archivement": []
+}

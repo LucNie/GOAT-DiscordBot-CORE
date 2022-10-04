@@ -12,8 +12,8 @@ module.exports = {
             const row = new ActionRowBuilder()
 			.addComponents(
 				new ButtonBuilder()
-					.setCustomId('tp_start_Terran')
-					.setLabel('Terran')
+					.setCustomId('tp_start_Humanoid')
+					.setLabel('Humanoid')
 					.setStyle(ButtonStyle.Primary),
 			);
             const row2 = new ActionRowBuilder()
@@ -23,21 +23,7 @@ module.exports = {
                     .setLabel('Machine')
                     .setStyle(ButtonStyle.Primary),
             );
-            const row3 = new ActionRowBuilder()
-            .addComponents(
-                new ButtonBuilder()
-                    .setCustomId('tp_start_Alfarien')
-                    .setLabel('Alfarien')
-                    .setStyle(ButtonStyle.Primary),
-            );
-            const row4 = new ActionRowBuilder()
-            .addComponents(
-                new ButtonBuilder()
-                    .setCustomId('tp_start_Erien')
-                    .setLabel('Erien')
-                    .setStyle(ButtonStyle.Primary),
-            );
-            await interaction.reply({ content : "Choisis votre race", components: [row,row2,row3,row4] });
+            await interaction.reply({ embeds: [SpeciesField], components: [row,row2] });
             
         }
 
@@ -50,13 +36,28 @@ module.exports = {
         
         dataController.mainData["tp"].users[interaction.user.id] = {}
 
-        if (choice == "Terran" || choice == "Machine" || choice == "Alfarien" || choice == "Erien"){
+        if (choice == "Humanoid" || choice == "Machine"){
             dataController.mainData["tp"].users[interaction.user.id].race = choice
         }
         
     }
-    
-
-
 
 };
+
+
+const SpeciesField = {
+	color: 0x0099ff,
+	title: 'Choice your Species',
+	fields: [
+		{
+			name: 'Humanoid :',
+			value: '- Humanoid biological species gain experience over time, and can be genetically modified and can add robotic prostheses\n\nHumanoid biological species generally need to be maintained with some form of food.',
+		},
+		{
+			name: 'Machine:',
+			value: '- Robotic species need to modify / change their modules with money to be more efficient\n\nRobotic species generally adapt to all types of climates, and certain extreme conditions\n\nthe modules and the core of the robot wear out over time',
+		},
+	],
+	timestamp: new Date().toISOString(),
+};
+

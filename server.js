@@ -1,8 +1,10 @@
+require('dotenv').config()
+
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
 const { SlashCommandBuilder, ActivityType } = require('discord.js');
-const token = "NzQ2NDQ2Nzc0MjIyMTkyNzEw.GGVyXh.LSuhoiiBzpnhrnMW7tIUuk-RVpbp5O2I4uJDNw"
+const token = process.env.TOKEN;
 const dataController = require("./core/dataController");
 
 const client = global.client = new Discord.Client({
@@ -13,6 +15,8 @@ client.commands = global.commands = new Discord.Collection();
 
 var commands = []; // Array of commands
 var exCommands = {}; // Object of commands
+
+dataController.init();
 
 //update commands with all folder with commands in it : dossier.commands
 
@@ -45,7 +49,7 @@ client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
     client.user.setPresence({
-        activities: [{ name: `discord.js v14`, type: ActivityType.Playing }],
+        activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
         status: 'dnd',
     });
 

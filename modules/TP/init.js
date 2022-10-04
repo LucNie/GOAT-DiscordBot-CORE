@@ -1,6 +1,7 @@
 //modules discord ping 
 const BAKusers = require('./data/users.json');
 const BAKinstance = require('./data/instance.json');
+const itemsControllers = require('./functions/itemsControllers.js');
 module.exports = { 
 
     name: 'init', 
@@ -13,6 +14,9 @@ module.exports = {
         }else if(typeof(dataController.mainData["tp"].instance) == "undefined"){
             dataController.mainData["tp"].instance = {}
         }
+        itemsControllers.initIdsList(dataController);
+
+
     }
     
 }
