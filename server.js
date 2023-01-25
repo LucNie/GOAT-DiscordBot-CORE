@@ -13,10 +13,8 @@ const client = global.client = new Discord.Client({
 
 client.commands = global.commands = new Discord.Collection();
 
-var commands = []; // Array of commands
-var exCommands = {}; // Object of commands
-
-dataController.init();
+let commands = []; // Array of commands
+let exCommands = {}; // Object of commands
 
 //update commands with all folder with commands in it : dossier.commands
 
@@ -25,7 +23,7 @@ _folders.forEach(folder => {
     const _files = fs.readdirSync(path.join(__dirname, './modules', folder)).filter(file => file.endsWith('.js'));
     exCommands[folder.toLocaleLowerCase()] = {};
     dataController.newModules(folder.toLocaleLowerCase());
-    var _data = new SlashCommandBuilder()
+    let _data = new SlashCommandBuilder()
         .setName(folder.toLowerCase())
         .setDescription('Commande de ' + folder);
     _files.forEach(file => {
@@ -45,16 +43,23 @@ _folders.forEach(folder => {
     });
     commands.push(_data);
 });
+
+// apps commands
+
+
 client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
-    client.user.setPresence({
-        activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
-        status: 'dnd',
-    });
+    // client.user.setPresence({
+    //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
+    //     status: 'dnd',
+    // });
 
     //register all commands
-    client.application.commands.set(commands);
+
+    dataController.init(client, ActivityType);
+
+    // client.application.commands.set(commands);
 });
 
 client.on('interactionCreate', async interaction => {
