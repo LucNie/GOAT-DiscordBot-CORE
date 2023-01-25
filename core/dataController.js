@@ -16,6 +16,9 @@ let coreData = {
 //     Checker(data)
 // })
 
+serviceController.isPortUsed(25501).then((data) => {
+    console.log(data)
+})
 
 function Checker(aArrayOfPorts) {
     const _portsToCheck = process.env.CHECK_PORT.split(",");
@@ -40,6 +43,8 @@ function init(aClientDiscord, ActivityType) {
 
     serviceController.listPortsUsed().then((data) => {
        
+        console.log(data)
+
         aClientDiscord.user.setPresence({
             activities: [{ name:  Checker(data), type: ActivityType.Playing }],
             status: 'dnd',
