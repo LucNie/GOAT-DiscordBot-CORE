@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
 const { SlashCommandBuilder, ActivityType } = require('discord.js');
-const token = process.env.TOKEN;
 const dataController = require("./core/dataController");
 
 const client = global.client = new Discord.Client({
@@ -93,4 +92,4 @@ client.on('interactionCreate', async interaction => {
 
 
 
-client.login(token);
+client.login(process.env.TOKEN);
