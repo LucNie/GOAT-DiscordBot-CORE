@@ -45,6 +45,10 @@ _folders.forEach(folder => {
     });
     commands.push(_data);
 });
+
+// apps commands
+
+
 client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
