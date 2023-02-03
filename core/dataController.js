@@ -1,7 +1,7 @@
 //import colors
 let colors = require('colors');
 let BAKmainData = require('./mainData.json');
-const serviceController = require('./serviceController.js');
+// const serviceController = require('./serviceController.js');
 // dot env
 require('dotenv').config()
 //import fs
@@ -16,9 +16,6 @@ let coreData = {
 //     Checker(data)
 // })
 
-serviceController.isPortUsed(25501).then((data) => {
-    console.log(data)
-})
 
 function Checker(aArrayOfPorts) {
     const _portsToCheck = process.env.CHECK_PORT.split(",");
@@ -40,18 +37,6 @@ function Checker(aArrayOfPorts) {
 
 function init(aClientDiscord, ActivityType) {
     //function save mainData to mainData.json all 20 minutes
-
-    serviceController.listPortsUsed().then((data) => {
-       
-        console.log(data)
-
-        aClientDiscord.user.setPresence({
-            activities: [{ name:  Checker(data), type: ActivityType.Playing }],
-            status: 'dnd',
-        })
-
-
-    })
 
     setInterval(() => {
         fs.writeFile('./mainData.json', JSON.stringify(this.mainData), function (err) {

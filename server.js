@@ -35,6 +35,12 @@ _folders.forEach(folder => {
                 subcommand
                     .setName(_command.name)
                     .setDescription(_command.description)
+                    .addStringOption(option =>
+                        option.setName('argument')
+                            .setDescription('argument de la commande')
+                            .setRequired(false)
+                    )
+                    
             );
         } else {
             _command.execute(null, dataController);
@@ -49,16 +55,16 @@ _folders.forEach(folder => {
 client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
-    // client.user.setPresence({
-    //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
-    //     status: 'dnd',
-    // });
+    client.user.setPresence({
+        activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
+        status: 'dnd',
+    });
 
     //register all commands
 
     dataController.init(client, ActivityType);
 
-    // client.application.commands.set(commands);
+    client.application.commands.set(commands);
 });
 
 client.on('interactionCreate', async interaction => {
