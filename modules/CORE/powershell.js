@@ -7,13 +7,14 @@ module.exports = {
     stringOption: true,
     async execute(interaction) {
         // get command from user
-        const command = interaction.options.getString('argument');
-        console.log(command);
+       
+
+        
         const { exec } = require('child_process');
-        exec(command, (err, stdout, stderr) => {
+        exec(interaction.options.getString('argument'), (err, stdout, stderr) => {
             if (err) {
                 //some err occurred
-                console.error(err)
+                interaction.reply(`error: ${err.message}`);
             } else {
                 // the *entire* stdout and stderr (buffered)
                 console.log(`stdout: ${stdout}`);
