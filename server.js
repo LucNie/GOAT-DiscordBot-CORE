@@ -4,7 +4,6 @@ const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
 const { SlashCommandBuilder, ActivityType } = require('discord.js');
-const token = process.env.TOKEN;
 const dataController = require("./core/dataController");
 
 const client = global.client = new Discord.Client({
@@ -36,6 +35,12 @@ _folders.forEach(folder => {
                 subcommand
                     .setName(_command.name)
                     .setDescription(_command.description)
+                    .addStringOption(option =>
+                        option.setName('argument')
+                            .setDescription('argument de la commande')
+                            .setRequired(false)
+                    )
+                    
             );
         } else {
             _command.execute(null, dataController);
@@ -50,16 +55,16 @@ _folders.forEach(folder => {
 client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
-    // client.user.setPresence({
-    //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
-    //     status: 'dnd',
-    // });
+    client.user.setPresence({
+        activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
+        status: 'dnd',
+    });
 
     //register all commands
 
-    dataController.init(client, ActivityType);
+    dataController.init(client);
 
-    // client.application.commands.set(commands);
+    client.application.commands.set(commands);
 });
 
 client.on('interactionCreate', async interaction => {
@@ -93,4 +98,4 @@ client.on('interactionCreate', async interaction => {
 
 
 
-client.login(token);
+client.login(process.env.TOKEN);
