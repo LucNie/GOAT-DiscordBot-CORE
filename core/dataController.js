@@ -1,6 +1,7 @@
 //import colors
 let colors = require('colors');
 let BAKmainData = require('./mainData.json');
+let mainData = BAKmainData
 // const serviceController = require('./serviceController.js');
 // dot env
 require('dotenv').config()
@@ -17,42 +18,26 @@ let coreData = {
 // })
 
 
-function Checker(aArrayOfPorts) {
-    const _portsToCheck = process.env.CHECK_PORT.split(",");
-    const _PortsName = process.env.CHECK_NAME.split(",");
-    const _portsShortName = process.env.CHECK_SHORT_NAME.split(",");
-
-    let _text = '';
-
-    for (let i = 0; i < _portsToCheck.length; i++) {
-        if (aArrayOfPorts.includes(_portsToCheck[i])) {
-            _text += _portsShortName[i] + '🟢 '
-        } else {
-            _text += _portsShortName[i] + '🔴 '
-        }
-    }
-    // console.log(_text)
-    return _text;
-}
-
-function init(aClientDiscord, ActivityType) {
+function init() {
     //function save mainData to mainData.json all 20 minutes
-
+    
     setInterval(() => {
-        fs.writeFile('./mainData.json', JSON.stringify(this.mainData), function (err) {
+        fs.writeFile('./core/mainData.json', JSON.stringify(mainData), function (err) {
+            
             if (err) return console.log(err);
             console.log("{INFO} [dataController] mainData.json saved" + colors.green(" ✔"));
+            console.log(mainData)
             //recusrive 
-            this.init();
+            init();
         });
-    }, 1200000); // 20 minutes
+    }, 1200); // 20 minutes
 }
 
     // 
 
     module.exports = {
 
-        mainData: BAKmainData,
+        mainData,
 
         //principal function to get data from the server
         getCoreData() {
@@ -70,8 +55,9 @@ function init(aClientDiscord, ActivityType) {
         newModules(aName) {
             if (this.mainData[aName] == undefined) {
                 this.mainData[aName] = {}
+                console.log("{INFO} [dataController] Module " + aName + " created")
             } else {
-                console.log("{INFO} [dataController] Module " + aName + " already exist")
+                // console.log("{INFO} [dataController] Module " + aName + " already exist")
             }
         },
         updateMainModulesData(aName, aData) {

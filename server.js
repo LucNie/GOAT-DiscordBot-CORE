@@ -62,7 +62,7 @@ client.on('ready', () => {
 
     //register all commands
 
-    dataController.init(client, ActivityType);
+    dataController.init(client);
 
     client.application.commands.set(commands);
 });

@@ -1,2 +1,0 @@
-let colors = require('colors');
-
