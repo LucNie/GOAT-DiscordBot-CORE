@@ -30,7 +30,7 @@ function init() {
             //recusrive 
             init();
         });
-    }, 1200); // 20 minutes
+    }, 1200000); // 20 minutes
 }
 
     // 
