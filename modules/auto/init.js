@@ -11,10 +11,10 @@ module.exports = {
     description: '',
     async execute() {
         // list all containers
-        listContainers().then(containers => {
-            containers.forEach(container => {
-                console.log(container.data);
-            });
-        });
+        // listContainers().then(containers => {
+        //     containers.forEach(container => {
+        //         console.log(container.data);
+        //     });
+        // });
     },
 };
