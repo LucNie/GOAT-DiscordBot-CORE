@@ -16,6 +16,7 @@
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.2",
     "fs": "^0.0.1-security",
+    "node-docker-api": "^1.1.22",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
     "tcp-port-used": "^1.0.2"
