@@ -5,7 +5,7 @@ const path = require("path");
 const Discord = require("discord.js");
 const { SlashCommandBuilder, ActivityType } = require('discord.js');
 const dataController = require("./core/dataController");
-
+const cc = require('./core/console')
 const client = global.client = new Discord.Client({
     intents: 0, //please use eNums as of v14.
 });
@@ -53,7 +53,8 @@ _folders.forEach(folder => {
 
 
 client.on('ready', () => {
-    console.log("bot is ready   " + client.user.tag);
+    // console.log("bot is ready   " + client.user.tag);
+    cc.info('Start','Bot ' + client.user.tag + ' is ready !')
 
     // client.user.setPresence({
     //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
@@ -68,7 +69,7 @@ client.on('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-    console.log("{IFNO} [interactionCreate] message recu de " + interaction.user.username + " : " + interaction.commandName );
+    cc.info('interactionCreate',"message recu de " + interaction.user.username + " : " + interaction.commandName );
     if (interaction.isCommand()) {
         const { commandName } = interaction;
         const command = client.commands.get(commandName);

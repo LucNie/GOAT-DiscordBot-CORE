@@ -1,4 +1,5 @@
 const exec = require('child_process').exec;
+const cc = require('../../core/console')
 const colors = require('colors');
 require('dotenv').config();
 
@@ -43,7 +44,7 @@ function getOpenPorts() {
 }
 
 function execute(client) {
-    console.log('{INFO} [auto.init] Auto powering up...')
+    cc.info('auto.init','Auto powering up...')
     if (process.env.CHECKS_ENABLED === 'true') {
 
 
@@ -80,10 +81,10 @@ function execute(client) {
                             }
                         }
                         // set new status
-                        console.log(__list)
+                        cc.info('auto.init','Discord status set to: ' + __list )
                         client.user.setPresence({
                             activities: [{ name: `${__list}`, type: ActivityType.Playing }],
-                            status: 'dnd',
+                            status: 'online',
                         });
 
 

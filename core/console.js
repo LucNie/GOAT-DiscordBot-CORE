@@ -1,6 +1,4 @@
 /* MODULE NOT USED YET */
-
-let colors = require('colors');
 require('dotenv').config()
 
 function log(text) {
@@ -8,24 +6,26 @@ function log(text) {
 }
 function debug(text) {
     // blue
-    console.log(colors.blue(text))
+    console.log('\x1b[34m%s\x1b[0m', text)
 }
 function info(identification,text) {
     // green
-    console.log(colors.green(`{INFO} [${identification}] : ` + text))
+    console.log('\x1b[32m {info} [' + identification + '] \x1b[0m'  + text )
 }
 function warn(identification,text) {
     // yellow
-    console.log(colors.yellow(`{WARNING} [${identification}] ${text}`))
+    console.log('\x1b[33m {!WARNING!}['+ identification + '] \x1b[0m' + text)
 }
 function error(identification,text) {
     // red
-    console.log(colors.red(`{ERROR} [${identification}] ${text}`))
+    console.log('\x1b[31m {ERROR} ['+ identification + '] \x1b[0m' + text)
 }
 function fatal(identification,text) {
-    // white on red background
-    console.log(colors.bgRed.white(`{FATAL} [${identification}] ${text}`))
+    // red
+    console.log('\x1b[31m {FATAL} ['+ identification + '] \x1b[0m' + text)
+    process.exit(1)
 }
+
 
 module.exports = {
     log,
