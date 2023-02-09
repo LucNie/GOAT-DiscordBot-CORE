@@ -43,7 +43,7 @@ _folders.forEach(folder => {
                     
             );
         } else {
-            _command.execute(null, dataController);
+            _command.execute(client, dataController);
         }
     });
     commands.push(_data);
@@ -55,14 +55,14 @@ _folders.forEach(folder => {
 client.on('ready', () => {
     console.log("bot is ready   " + client.user.tag);
 
-    client.user.setPresence({
-        activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
-        status: 'dnd',
-    });
+    // client.user.setPresence({
+    //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
+    //     status: 'dnd',
+    // });
 
     //register all commands
 
-    dataController.init(client);
+    dataController.init();
 
     client.application.commands.set(commands);
 });
