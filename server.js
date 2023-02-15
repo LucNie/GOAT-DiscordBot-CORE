@@ -6,6 +6,9 @@ const Discord = require("discord.js");
 const { SlashCommandBuilder, ActivityType } = require('discord.js');
 const dataController = require("./core/dataController");
 const cc = require('./core/console')
+const auth = require('./core/autorisationController')
+
+
 const client = global.client = new Discord.Client({
     intents: 0, //please use eNums as of v14.
 });
@@ -40,7 +43,6 @@ _folders.forEach(folder => {
                             .setDescription('argument de la commande')
                             .setRequired(false)
                     )
-                    
             );
         } else {
             _command.execute(client, dataController);
@@ -75,10 +77,15 @@ client.on('interactionCreate', async interaction => {
         const command = client.commands.get(commandName);
         // if (!command) return;
         try {
+            cc.debug(interaction.user.id)
+            if(auth.isWhiteListed(exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].auth, interaction.user.id)){
             await exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction, dataController);
+            }else{
+                await interaction.reply({ content: 'You are not allowed to use this command!', ephemeral: false });
+            }
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: false });
         }
 
     }else if(interaction.isButton()){
@@ -96,7 +103,6 @@ client.on('interactionCreate', async interaction => {
         }
     }
 });
-
 
 
 client.login(process.env.TOKEN);
