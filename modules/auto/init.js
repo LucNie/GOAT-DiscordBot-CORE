@@ -53,7 +53,28 @@ function execute(client) {
             function _checkDocker() {
                 setInterval(async () => {
                     let containers = await getRunningContainers();
-                    console.log(containers)
+                    
+
+                    if (process.env.CHECKS_DOCKER_ENABLED === 'true') {
+                        let __list = ''
+                        // ENV CHECKS_DOCKER ";" between containers
+                        let __containers = process.env.CHECKS_DOCKER_NAMES.split(';')
+                        for (let i = 0; i < __containers.length; i++) {
+                            const container = __containers[i];
+                            if (container === '') continue;
+                            if (containers.includes(container)) {
+                                __list += container + ' ✅ '
+                            } else {
+                                __list += container + ' ❌ '
+                            }
+                        }
+                        // set new status
+                        cc.info('auto.init','Discord status set to: ' + __list )
+                        client.user.setPresence({
+                            activities: [{ name: `${__list}`, type: ActivityType.Playing }],
+                            status: 'online',
+                        });
+                    }
                 }, process.env.CHECKS_INTERVAL * 1000);
             }
         }
@@ -75,7 +96,7 @@ function execute(client) {
                             const portName = __portsNames[i];
                             if ( port === '') continue;
                             if (openPorts.includes(port)) {
-                                __list += portName + ' ✔ '
+                                __list += portName + ' ✅ '
                             } else {
                                 __list += portName + ' ❌ '
                             }
