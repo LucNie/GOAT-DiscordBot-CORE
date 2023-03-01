@@ -1,0 +1,126 @@
+{
+    "CC": {
+        "name": "Command Center",
+        "description": "The heart of your base.",
+        "level": {
+            "1": {
+                "name": "Command Center",
+                "description": "The heart of your base.",
+                "power": 0
+            },
+            "2": {
+                "name": "Command Center II",
+                "description": "The heart of your base.",
+                "power": 12000
+            },
+            "3": {
+                "name": "Command Center III",
+                "description": "The heart of your base.",
+                "power": 9000000
+            }
+        }
+    },
+    "PowerPlant": {
+        "name": "Power Plant",
+        "description": "Generates power for your base.",
+        "level": {
+            "1": {
+                "name": "fusion reactor",
+                "description": "generates power with a fusion reaction.",
+                "power": 100
+            },
+            "2": {
+                "name": "fusion reactor optimized",
+                "description": "Generates power with a optimized fusion reaction without losts.",
+                "power": 175
+            },
+            "3": {
+                "name": "anti matter reactor",
+                "description": "Generates a hudge amount of power with a anti matter reaction.",
+                "power": 3375
+            },
+            "4": {
+                "name": "anti matter reactor optimized",
+                "description": "Generates a hudge amount of power with a optimized anti matter reaction.",
+                "power": 6000
+            },
+            "5": {
+                "name": "singularity reactor",
+                "description": "Generate phenomenal power with a miniaturized sun.",
+                "power": 100500
+            },
+            "6": {
+                "name": "singularity reactor optimized",
+                "description": "Generate phenomenal power with a miniaturized black hole.",
+                "power": 150000
+            },
+            "7": {
+                "name": "dimensional reactor",
+                "description": "Generates power by opening a portal to another dimension.",
+                "power": 4500000
+            },
+            "8": {
+                "name": "multi-dimensional reactor",
+                "description": "Generates power by opening a portal to multiple dimensions.",
+                "power": 9000000
+            },
+            "9": {
+                "name": "multi-phasic reactor",
+                "description": "Generates excessive power by manipulating thelaws of physics.",
+                "power": 755000000
+            }
+        }
+    },
+    "metal rafinery": {
+        "name": "Ore Refinery",
+        "description": "Refines ore into metal.",
+        "level": {
+            "1": {
+                "name": "ore refinery",
+                "description": "Refines ore into metal.",
+                "power": 100
+            },
+            "2": {
+                "name": "ore refinery II",
+                "description": "Refines ore into metal.",
+                "power": 175
+            },
+            "3": {
+                "name": "ore refinery III",
+                "description": "Refines ore into metal.",
+                "power": 3375
+            },
+            "4": {
+                "name": "ore refinery IV",
+                "description": "Refines ore into metal.",
+                "power": 6000
+            },
+            "5": {
+                "name": "ore refinery V",
+                "description": "Refines ore into metal.",
+                "power": 100500
+            },
+            "6": {
+                "name": "ore refinery VI",
+                "description": "Refines ore into metal.",
+                "power": 150000
+            },
+            "7": {
+                "name": "ore refinery VII",
+                "description": "Refines ore into metal.",
+                "power": 4500000
+            },
+            "8": {
+                "name": "ore refinery VIII",
+                "description": "Refines ore into metal.",
+                "power": 9000000
+            },
+            "9": {
+                "name": "ore refinery IX",
+                "description": "Refines ore into metal.",
+                "power": 755000000
+            }
+        }
+    }
+
+}
