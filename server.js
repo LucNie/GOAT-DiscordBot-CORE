@@ -68,6 +68,7 @@ client.on('ready', () => {
     dataController.init();
 
     client.application.commands.set(commands);
+    console.log("commands setted")
 });
 
 client.on('interactionCreate', async interaction => {
