@@ -70,31 +70,36 @@ const normalizemnist2 = mnist.map(row => { // set > 127 to 1, < 127 to 0
 // const json = require('./network.json');
 // const net = new brain.NeuralNetwork().fromJSON(json);
 
-async function asyncTrain(){
-    await net.trainAsync(normalizemnist2, config);
-    
-    // test the network
-    const test = mnist.slice(0, 100).map(row => { // test the first 100 rows
+async function asyncTrain(interaction) {
+    try {
+      const trainingResults = await net.trainAsync(normalizemnist2, config);
+      console.log("done training", trainingResults);
+      interaction.editReply('Done training the network!');
+  
+      // test the network
+      const test = mnist.slice(0, 100).map(row => { // test the first 100 rows
         return {
-            input: row.slice(1).map(x => x > 127 ? 1 : 0),
-            output: [row[0] / 9]
+          input: row.slice(1).map(x => x > 127 ? 1 : 0),
+          output: [row[0] / 9]
         }
-    });
-    let _result = [];
-    for (let i = 0; i < 5; i++) {
-        
+      });
+      let _result = [];
+      for (let i = 0; i < 5; i++) {
         let _rand = Math.round(Math.random() * 100);
         const output = net.run(test[_rand].input);
-        console.log("data : " + _rand," test output: ", output * 9, "expected: ", test[_rand].output * 9);
+        console.log("data : " + _rand, " test output: ", output * 9, "expected: ", test[_rand].output * 9);
         _result.push({
-            data : _rand,
-            test_output : output * 9,
-            expected : test[_rand].output * 9
+          data: _rand,
+          test_output: output * 9,
+          expected: test[_rand].output * 9
         });
+      }
+      interaction.channel.send({ content: 'Result: ' + JSON.stringify(_result) });
+    } catch (err) {
+      console.error(err);
+      interaction.editReply('Error training the network!');
     }
-
-    return _result;
-}
+  }
 
 module.exports = {
     asyncTrain

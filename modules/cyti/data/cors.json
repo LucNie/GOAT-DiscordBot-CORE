@@ -1,0 +1,12 @@
+{
+    "spider": {
+        "basic-spider-3":{
+            "id": 1,
+            "name": "basic-spider-3",
+            "maps": {
+                "x": 3,
+                "y": 3
+            }
+        }
+    }
+}

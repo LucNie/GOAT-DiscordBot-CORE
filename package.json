@@ -20,6 +20,7 @@
     "node-docker-api": "^1.1.22",
     "nodemon": "^2.0.19",
     "path": "^0.12.7",
+    "string-width": "^5.1.2",
     "tcp-port-used": "^1.0.2"
   }
 }

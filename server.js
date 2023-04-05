@@ -54,7 +54,7 @@ _folders.forEach(folder => {
 // apps commands
 
 
-client.on('ready', () => {
+client.on('ready', async () => {
     // console.log("bot is ready   " + client.user.tag);
     cc.info('Start','Bot ' + client.user.tag + ' is ready !')
 
@@ -80,13 +80,13 @@ client.on('interactionCreate', async interaction => {
         try {
             cc.debug(interaction.user.id)
             if(auth.isWhiteListed(exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].auth, interaction.user.id)){
-            await exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction, dataController);
+            exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction, dataController);
             }else{
-                await interaction.reply({ content: 'You are not allowed to use this command!', ephemeral: false });
+            interaction.reply({ content: 'You are not allowed to use this command!', ephemeral: false });
             }
         } catch (error) {
             console.error(error);
-            await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: false });
+            interaction.reply({ content: 'There was an error while executing this command!', ephemeral: false });
         }
 
     }else if(interaction.isButton()){
