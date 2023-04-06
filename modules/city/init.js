@@ -6,11 +6,13 @@ require('dotenv').config()
 let instance = dataController.mainData.cyti
 
 async function execute(client, dataController) {
-    cc.info('cyti.init','Cyti powering up...')
+    cc.info('cyti.init','city powering up...')
     setInterval(() => {
         dataController.mainData.cyti = instance
-        cc.info('cyti.init','Cyti data saved')
-    }, 120000); // 20 minutes
+        cc.info('cyti.init','city data saved')
+        cityDataController.globalUpdate()
+    }, 60000); // 1 minute
+    
 }
 
 

@@ -3,7 +3,7 @@ require('dotenv').config()
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
-const { SlashCommandBuilder, ActivityType } = require('discord.js');
+const { SlashCommandBuilder, ActivityType,SlashCommandSubcommandBuilder } = require('discord.js');
 const dataController = require("./core/dataController");
 const cc = require('./core/console')
 const auth = require('./core/autorisationController')
@@ -34,16 +34,22 @@ _folders.forEach(folder => {
         //add subcommand
         if (file != "init.js") {
             exCommands[folder.toLocaleLowerCase()][file.split('.')[0]] = _command;
-            _data.addSubcommand(subcommand =>
-                subcommand
-                    .setName(_command.name)
-                    .setDescription(_command.description)
-                    .addStringOption(option =>
-                        option.setName('argument')
-                            .setDescription('argument de la commande')
+
+            const _subCommand = new SlashCommandSubcommandBuilder()
+                .setName(_command.name)
+                .setDescription(_command.description);
+            // ajoute les instruction optionnelles
+            if (_command.hasOwnProperty('options')) {
+                // ajoute les options a la sous commande
+                for (let i = 0; i < _command.options; i++) {
+                    _subCommand.addStringOption(option =>
+                        option.setName("option" + i)
+                            .setDescription("option" + i)
                             .setRequired(false)
-                    )
-            );
+                    );
+                }
+            }
+            _data.addSubcommand(_subCommand);
         } else {
             _command.execute(client, dataController);
         }
@@ -56,7 +62,7 @@ _folders.forEach(folder => {
 
 client.on('ready', async () => {
     // console.log("bot is ready   " + client.user.tag);
-    cc.info('Start','Bot ' + client.user.tag + ' is ready !')
+    cc.info('Start', 'Bot ' + client.user.tag + ' is ready !')
 
     // client.user.setPresence({
     //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
@@ -72,33 +78,33 @@ client.on('ready', async () => {
 });
 
 client.on('interactionCreate', async interaction => {
-    cc.info('interactionCreate',"message recu de " + interaction.user.username + " : " + interaction.commandName );
+    cc.info('interactionCreate', "message recu de " + interaction.user.username + " : " + interaction.commandName);
     if (interaction.isCommand()) {
         const { commandName } = interaction;
         const command = client.commands.get(commandName);
         // if (!command) return;
         try {
             cc.debug(interaction.user.id)
-            if(auth.isWhiteListed(exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].auth, interaction.user.id)){
-            exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction, dataController);
-            }else{
-            interaction.reply({ content: 'You are not allowed to use this command!', ephemeral: false });
+            if (auth.isWhiteListed(exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].auth, interaction.user.id)) {
+                exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].execute(interaction, dataController);
+            } else {
+                interaction.reply({ content: 'You are not allowed to use this command!', ephemeral: false });
             }
         } catch (error) {
             console.error(error);
             interaction.reply({ content: 'There was an error while executing this command!', ephemeral: false });
         }
 
-    }else if(interaction.isButton()){
+    } else if (interaction.isButton()) {
         //get button id
         const buttonId = interaction.customId;
         //get module name
         const moduleName = buttonId.split("_")[0];
         //get command name
         const commandName = buttonId.split("_")[1];
-        try{
+        try {
             await exCommands[moduleName.toLocaleLowerCase()][commandName.toLocaleLowerCase()].buttonExecute(interaction, dataController);
-        } catch (error){
+        } catch (error) {
             console.error(error);
             await interaction.reply({ content: 'There was an error while executing this button!', ephemeral: true });
         }

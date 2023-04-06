@@ -1,0 +1,115 @@
+{
+    "environnement": {
+        "empty": {
+            "name": "empty",
+            "id": 0,
+            "emoji": "⬜"
+        },
+        "water": {
+            "name": "water",
+            "id": 1,
+            "emoji": "🌊"
+        },
+        "mountain": {
+            "name": "mountain",
+            "id": 2,
+            "emoji": "⛰️"
+        }
+    },   
+    "reactor": {
+        "Centrale_Nucléaire": {
+            "name": "Centrale Nucléaire",
+            "description": "La centrale nucléaire est un réacteur nucléaire qui produit de l'électricité.",
+            "id": 3,
+            "emoji": "🔋",
+            "type": "reactor",
+            "cost": {
+                "energy": 0,
+                "mass": 100
+            },
+            "maintenance": {
+                "energy": 0,
+                "mass": 2
+            },
+            "production": {
+                "energy": 100
+            },
+            "storage": {
+                "mass": 0
+            },
+            "options": [
+                "Système de refroidissement amélioré nucléaire",
+                "Système de stockage des déchets radioactifs amélioré"
+            ]
+        }
+    },
+    "QC":{
+        "Centre_de_controle":{
+            "name": "Centre de contrôle",
+            "description": "Le centre de contrôle est un bâtiment qui permet de gérer les réacteurs nucléaires.",
+            "id": 4,
+            "emoji": "🗼",
+            "type": "QC",
+            "cost": {
+                "energy": 0,
+                "mass": 0
+            },
+            "maintenance": {
+                "energy": 0,
+                "mass": 0
+            },
+            "storage": {
+                "mass": 10
+            },
+            "options": [
+            ]
+        }
+    },
+    "mass_Mine:":{
+        "Mine_de_Masse":{
+            "name": "Mine de Masse",
+            "description": "La mine de masse est un bâtiment qui permet de miner de la masse.",
+            "id": 5,
+            "emoji": "⛏️",
+            "type": "mass_Mine",
+            "cost": {
+                "energy": 0,
+                "mass": 0
+            },
+            "maintenance": {
+                "energy": 5,
+                "mass": 0
+            },
+            "production": {
+                "mass": 10
+            },
+            "storage": {
+                "mass": 100
+            },
+            "options": [
+            ]
+        }
+    },
+    "storage": {
+        "Stockage_de_Masse": {
+            "name": "Stockage de Masse",
+            "description": "Le stockage de masse est un bâtiment qui permet de stocker de la masse.",
+            "id": 6,
+            "emoji": "📦",
+            "type": "storage",
+            "cost": {
+                "energy": 5,
+                "mass": 0
+            },
+            "maintenance": {
+                "energy": 100,
+                "mass": 0
+            },
+            "storage": {
+                "mass": 1000
+            },
+            "options": [
+            ]
+        }
+    }
+}
