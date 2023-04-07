@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const colors = require('colors');
+const cc = require('../../core/console')
 require('dotenv').config();
 
 
@@ -11,7 +11,7 @@ module.exports = {
     name: 'init', 
     description: '',
     async execute() {
-        console.log("{INFO} [COREInit] Core powering up !")
+        cc.info('COREInit','Core powering up !')
           
     },
 };

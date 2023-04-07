@@ -5,6 +5,7 @@ module.exports = {
     name: 'powershell',
     description: 'Can use command',
     stringOption: true,
+    auth: "admin",
     async execute(interaction) {
         // get command from user
        
@@ -17,9 +18,11 @@ module.exports = {
                 interaction.reply(`error: ${err.message}`);
             } else {
                 // the *entire* stdout and stderr (buffered)
-                console.log(`stdout: ${stdout}`);
-                console.log(`stderr: ${stderr}`);
-                interaction.reply(`stdout: ${stdout} stderr: ${stderr}`);
+                // max 2000 char
+                if (stdout.length > 2000) {
+                    stdout = stdout.substring(0, 2000);
+                }
+                interaction.reply(stdout);
             }
         });
 

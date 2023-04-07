@@ -33,7 +33,7 @@ function init() {
     }, 1200000); // 20 minutes
 }
 
-    // 
+
 
     module.exports = {
 
@@ -63,6 +63,7 @@ function init() {
         updateMainModulesData(aName, aData) {
             this.mainData[aName] = aData
         },
-        init
+        init,
+        mainData
 
     }

@@ -1,0 +1,42 @@
+{
+    "Réacteur à fusion nucléaire": {
+        "id": 1,
+        "Description": "Remplacer les réacteurs à fission actuels par des réacteurs à fusion nucléaire pour produire de l'énergie propre et renouvelable."
+    },
+    "Système de refroidissement amélioré": {
+        "id": 2,
+        "Description": "Mettre en place un système de refroidissement plus efficace pour éviter les surchauffes et augmenter la sécurité de la centrale."
+    },
+    "Système de stockage des déchets radioactifs amélioré": {
+        "id": 3,
+        "Description": "Concevoir un système de stockage des déchets radioactifs plus sûr et plus efficace pour réduire l'impact environnemental de la centrale."
+    },
+    "Système de contrôle automatisé": {
+        "id": 4,
+        "Description": "Mettre en place un système de contrôle automatisé pour surveiller en permanence les paramètres de la centrale et réagir rapidement en cas de problèmes."
+    },
+    "Utilisation de matériaux résistants à la radiation": {
+        "id": 5,
+        "Description": "Utiliser des matériaux résistants à la radiation pour prolonger la durée de vie de la centrale et minimiser les risques pour les travailleurs."
+    },
+    "Système de récupération de l'énergie perdue": {
+        "id": 6,
+        "Description": "Installer un système de récupération de l'énergie perdue pour maximiser l'efficacité énergétique de la centrale."
+    },
+    "Utilisation d'énergie renouvelable complémentaire": {
+        "id": 7,
+        "Description": "Intégrer des sources d'énergie renouvelable complémentaires, telles que l'énergie solaire ou éolienne, pour diversifier la production d'énergie et réduire la dépendance aux combustibles fossiles."
+    },
+    "Système de sécurité renforcé": {
+        "id": 8,
+        "Description": "Renforcer les mesures de sécurité existantes de la centrale pour minimiser les risques d'accidents ou d'incidents."
+    },
+    "Amélioration de la durabilité environnementale": {
+        "id": 9,
+        "Description": "Concevoir la centrale de manière à minimiser son impact environnemental global, en utilisant des matériaux durables et en adoptant des pratiques de gestion de l'eau et des déchets écologiques."
+    },
+    "Utilisation de l'intelligence artificielle": {
+        "id": 10,
+        "Description": "Mettre en place un système d'intelligence artificielle pour optimiser les performances de la centrale, détecter les anomalies et proposer des solutions efficaces pour les résoudre."
+    }
+}

@@ -1,3 +1,5 @@
 .env
 node_modules
 /core/mainData.json
+dockerfile
+docker-compose.yml

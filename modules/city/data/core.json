@@ -1,0 +1,53 @@
+{
+    "spider": {
+        "basic-spider-4":{
+            "id": 1,
+            "name": "basic-spider-3",
+            "picture": "https://zupimages.net/up/23/14/si95.png",
+            "maps": {
+                "x": 3,
+                "y": 4
+            },
+            "legs":{
+                "hull": 100,
+                "speed": 1,
+                "number": 4,
+                "armor": 10,
+                "shield": 0
+            },
+            "storage":{
+                "mass" : 100
+            },
+            "production":{
+                "energy": 100,
+                "mass": 5
+            }
+            
+        }
+    },
+    "long-legs":{
+        "basic-long-legs-4":{
+            "id": 2,
+            "name": "basic-long-legs-4",
+            "picture": "https://zupimages.net/up/23/14/3m99.png",
+            "maps": {
+                "x": 3,
+                "y": 4
+            },
+            "legs":{
+                "hull": 75,
+                "speed": 1.5,
+                "number": 4,
+                "armor": 0,
+                "shield": 0
+            },
+            "storage":{
+                "mass" : 250
+            },
+            "production":{
+                "energy": 150,
+                "mass": 5
+            }
+        }
+    }
+}

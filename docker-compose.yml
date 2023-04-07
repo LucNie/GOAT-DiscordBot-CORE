@@ -1,0 +1,25 @@
+version: '3'
+
+<<<<<<< HEAD
+volumes:
+  node_data:
+    driver: local
+
+services:
+  goat-discord-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: goat-discord-bot
+    restart: always
+    volumes:
+      - node_data:/usr/src/app
+=======
+services:
+  discord-bot:
+    container_name: core-discord-bot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+>>>>>>> bfa171ae57d2923100890496db8b310ece17dad7
