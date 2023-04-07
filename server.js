@@ -45,7 +45,7 @@ _folders.forEach(folder => {
                     _subCommand.addStringOption(option =>
                         option.setName("option" + i)
                             .setDescription("option" + i)
-                            .setRequired(false)
+                            .setRequired(true)
                     );
                 }
             }
