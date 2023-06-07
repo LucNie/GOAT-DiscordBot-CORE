@@ -1,0 +1,49 @@
+{
+    "Galaxial":{
+        "id":0,
+        "name":"Lucas egnir",
+        "status": "alive",
+        "other_status": "multiple dead in the past",
+        "description":"Lucas is a time traveler. His species create the first time technology as die in the second cycle, he is the last of his kind, he is a very good commandant and a good pilot, he protect the world from the tread and build the futures secretly whit his friends",
+        "image":["https://entrepreneurship.ieee.org/wp-content/uploads/2018/02/Image-Coming-Soon-Placeholder-e1518111259296.png","https://entrepreneurship.ieee.org/wp-content/uploads/2018/02/Image-Coming-Soon-Placeholder-e1518111259296.png"],
+        "color":"#000000",
+        "groups": [
+            "0"
+        ]
+    },
+    "Anantya":{
+        "id":1,
+        "name":"Anantya the god of handling ",
+        "status": "alive (new c1)",
+        "other_status": "",
+        "description":"Anantya named god of handling, she is a external god of the world, but he brother try to kill her, she was hidding deeply underground in the parla planete, she is in the Galaxial body to recover her power for now",
+        "image":["https://entrepreneurship.ieee.org/wp-content/uploads/2018/02/Image-Coming-Soon-Placeholder-e1518111259296.png","https://entrepreneurship.ieee.org/wp-content/uploads/2018/02/Image-Coming-Soon-Placeholder-e1518111259296.png"],
+        "color":"#000000",
+        "groups": [
+            "0"
+        ]
+    },
+    "Chloé_Osi":{
+        "id":2,
+        "name":"Chloé Osi",
+        "status": "alive",
+        "other_status": "dead : c1 - c3",
+        "description":"Chloé was at the start (c1 - c3) the love intéress of Lucas, but she dye in the final incursion of the cryolite ( machine life forme auto replicante with simple triangulare shape), she came back with the Osiris project that save Lucas / Pierre from uko in (new c1)  and she is now the leader of the Osiris project",
+        "image":["https://zupimages.net/up/23/23/wnef.jpg","https://zupimages.net/up/23/23/jg3o.jpg"],
+        "color":"#000000",
+        "groups": []
+    },
+    "Elise":{
+        "id":3,
+        "name":"Elise",
+        "status": "Dead (uko diciple)",
+        "other_status": "alive (c8 - new c1)",
+        "description":"Elise is a créature from the thrid layer of void, she is a oddity Specialists, she was found by Galaxial and Emily in the void",
+        "image":["https://zupimages.net/up/23/23/jnq8.jpg","https://zupimages.net/up/23/23/0jvv.jpg"],
+        "color":"#000000",
+        "groups": [
+            "0"
+        ]
+    }
+    
+}

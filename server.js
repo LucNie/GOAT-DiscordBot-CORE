@@ -8,7 +8,6 @@ const dataController = require("./core/dataController");
 const cc = require('./core/console')
 const auth = require('./core/autorisationController')
 
-
 const client = global.client = new Discord.Client({
     intents: 0, //please use eNums as of v14.
 });
@@ -64,10 +63,10 @@ client.on('ready', async () => {
     // console.log("bot is ready   " + client.user.tag);
     cc.info('Start', 'Bot ' + client.user.tag + ' is ready !')
 
-    // client.user.setPresence({
-    //     activities: [{ name: `Rebuild itself`, type: ActivityType.Playing }],
-    //     status: 'dnd',
-    // });
+    client.user.setPresence({
+        activities: [{ name: `Galaxy&Co privileges`, type: ActivityType.Playing }],
+        status: 'dnd',
+    });
 
     //register all commands
 
