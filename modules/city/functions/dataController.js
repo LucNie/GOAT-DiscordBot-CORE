@@ -122,8 +122,8 @@ function newPlayer(aId) {
 function globalUpdate() {
 
     for (let index in instance) {
-        updatePlayer(index)
-        savePlayer(index)
+        // updatePlayer(index)
+        // savePlayer(index)
     }
 
 

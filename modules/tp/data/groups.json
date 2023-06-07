@@ -3,38 +3,43 @@
         "id": 0,
         "name": "Galaxy&Co",
         "description": "Galaxy&Co is a secret organization that is prevent the world form time paradox, they are the one who is responsible for the time travel technology.",
-        "image": "https://i.imgur.com/5JQJc7R.png",
-        "logo": "https://i.imgur.com/5JQJc7R.png"
+        "image": ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     },
     "Delta_Initiative":{
         "id": 1,
         "name": "Delta Initiative",
         "description": "Delta Initiative is a indépendant organization reponsible for the high end tehnologies and the Elite response Unit / ERU that detect and eliminate the chaos threat.",
-        "image": "https://i.imgur.com/5JQJc7R.png"
+        "image":  ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     },
     "GOAT":{
         "id": 2,
         "name": "GOAT",
         "description": "GOAT is the Galaxy&Co hidden organization that is responsible for the manipulation of the current lifeform present in the world.",
-        "image": "https://i.imgur.com/5JQJc7R.png"
+        "image":  ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     },
     "black_dove":{
         "id": 3,
         "name": "Black Dove",
         "description": "Black Dove is the main thread of the Galaxy&Co, they try to destroy the Galaxy&Co more specifically the manager",
-        "image": "https://i.imgur.com/5JQJc7R.png"
+        "image":  ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     },
     "Deux_Machina":{
         "id": 4,
         "name": "Deux Machina",
         "description": "Deux Machina is a coalition of the most powerful machinal creature in the world, they are the one who is responsible for the creation of the machinal lifeform.",
-        "image": "https://i.imgur.com/5JQJc7R.png"
+        "image":  ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     },
     "Light_Coporation":{
         "id": 5,
         "name": "Light Coporation",
         "description": "Light Coporation is a secret organization that produce energy for the Galaxy&Co and the Delta Initiative. they secretly produce the energy for the time travel technology and antropie engine.",
-        "image": "https://i.imgur.com/5JQJc7R.png"
+        "image":  ["https://i.imgur.com/5JQJc7R.png"],
+        "logo": ["https://i.imgur.com/5JQJc7R.png"]
     }
     
 }
