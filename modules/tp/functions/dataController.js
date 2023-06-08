@@ -2,34 +2,32 @@
 const exp = require('constants');
 const fs = require('fs');
 const path = require('path');
+const cc = require('../../../core/console')
 
 const data = {
-    chara: {},
-    groups: {},
-    chp: {}
+    chara: JSON.parse(fs.readFileSync(path.join(__dirname, '../data/characters.json'))),
+    groups: JSON.parse(fs.readFileSync(path.join(__dirname, '../data/groups.json'))),
+    chp: JSON.parse(fs.readFileSync(path.join(__dirname, '../data/chapters.json'))),
+    storys: JSON.parse(fs.readFileSync(path.join(__dirname, '../data/storys.json'))),
+    users: JSON.parse(fs.readFileSync(path.join(__dirname, '../data/users.json')))
 }
 
 
 
-function loadChara(){
-    const rawChara = fs.readFileSync(path.join(__dirname, '../data/characters.json'))
-    for (const [key, value] of Object.entries(JSON.parse(rawChara))) {
-        data.chara[value.id] = value
-    }
+function getStory(id){
+    return data.storys[id]
 }
 
-function loadGroups(){
-    const rawGroups = fs.readFileSync(path.join(__dirname, '../data/groups.json'))
-    for (const [key, value] of Object.entries(JSON.parse(rawGroups))) {
-        data.groups[value.id] = value
-    }
+function getStorys(){
+    return data.storys
 }
 
-function loadchp(){
-    const rawchp = fs.readFileSync(path.join(__dirname, '../data/chp.json'))
-    for (const [key, value] of Object.entries(JSON.parse(rawchp))) {
-        data.chp[value.id] = value
-    }
+function getUser(id){
+    return data.users[id]
+}
+
+function getUsers(){
+    return data.users
 }
 
 function getchp(id){
@@ -56,15 +54,114 @@ function getcharas(){
     return data.chara
 }
 
-loadChara()
-loadGroups()
-loadchp()
+function setCharaDescription(id, description){
+    if (data.chara[id] == undefined) {
+        return false
+    }
+
+    data.chara[id].description = description
+    return true
+}
+
+function getCharasByStory(id){
+    let charas = []
+    for (const chara in data.chara) {
+        if (data.chara[chara].story == id) {
+            charas.push(data.chara[chara])
+        }
+    }
+    return charas
+}
+
+function setStoryUser(id, story){
+    if (data.users[id] == undefined) {
+        data.users[id] = {}
+    }
+    if (data.storys[story] == undefined) {
+        return false
+    }
+
+    data.users[id].story = story
+    return data.storys[story].name
+}
+function setChpUser(id, chp){
+    if (data.users[id] == undefined) {
+        data.users[id] = {}
+    }
+    if (data.chp[chp] == undefined) {
+        return false
+    }
+
+
+    data.users[id].chp = chp
+    return data.chp[chp].title
+}
+function newEntry(aIdUser, aText){
+    if (data.users[aIdUser] == undefined) {
+        data.users[aIdUser] = {}
+    }
+
+    if (data.users[aIdUser].entries == undefined) {
+        data.users[aIdUser].entries = []
+    }
+
+    data.users[aIdUser].entries.push(aText)
+    
+}
+
+
+
+function saveData(aNumber){
+
+    switch (aNumber) {
+
+        case 0:
+   /*0*/ fs.writeFileSync(path.join(__dirname, '../data/users.json'), JSON.stringify(data.users))
+            break;
+        case 1:
+   /*1*/ fs.writeFileSync(path.join(__dirname, '../data/storys.json'), JSON.stringify(data.storys))
+            break;
+        case 2:
+   /*2*/ fs.writeFileSync(path.join(__dirname, '../data/characters.json'), JSON.stringify(data.chara))
+            break;
+        case 3:
+   /*3*/ fs.writeFileSync(path.join(__dirname, '../data/groups.json'), JSON.stringify(data.groups))
+            break;
+        case 4:
+   /*4*/ fs.writeFileSync(path.join(__dirname, '../data/chapters.json'), JSON.stringify(data.chp))
+            break;
+        default:
+    /*0*/ fs.writeFileSync(path.join(__dirname, '../data/users.json'), JSON.stringify(data.users))
+    /*1*/ fs.writeFileSync(path.join(__dirname, '../data/storys.json'), JSON.stringify(data.storys))
+    /*2*/ fs.writeFileSync(path.join(__dirname, '../data/characters.json'), JSON.stringify(data.chara))
+    /*3*/ fs.writeFileSync(path.join(__dirname, '../data/groups.json'), JSON.stringify(data.groups))
+    /*4*/ fs.writeFileSync(path.join(__dirname, '../data/chapters.json'), JSON.stringify(data.chp))
+            break;
+    }
+}
+
+// save data every 30 minutes
+setInterval(() => {
+    saveData()
+    cc.info("tp.dataController", "data saved")
+}, 1800000); // 30 minutes
+
+
 module.exports = {
     getChara,
     getcharas,
     getGroup,
     getGroups,
     getchp,
-    getchps
+    getchps,
+    getUser,
+    getUsers,
+    setStoryUser,
+    setChpUser,
+    getStory,
+    getStorys,
+    newEntry,
+    setCharaDescription,
+    getCharasByStory
 
 }
