@@ -74,6 +74,7 @@ function getCharasByStory(id){
 }
 
 function setStoryUser(id, story){
+    console.log(id,story)
     if (data.users[id] == undefined) {
         data.users[id] = {}
     }
@@ -85,6 +86,7 @@ function setStoryUser(id, story){
     return data.storys[story].name
 }
 function setChpUser(id, chp){
+    console.log(id,chp)
     if (data.users[id] == undefined) {
         data.users[id] = {}
     }
@@ -101,15 +103,31 @@ function newEntry(aIdUser, aText){
         data.users[aIdUser] = {}
     }
 
-    if (data.users[aIdUser].entries == undefined) {
-        data.users[aIdUser].entries = []
+    if (data.users[aIdUser].entry == undefined) {
+        data.users[aIdUser].entry = []
     }
 
-    data.users[aIdUser].entries.push(aText)
+    console.log(data.users[aIdUser].chp)
+
+    data.chp[data.users[aIdUser].chp].entry.push(aText)
+    
+    return true;
     
 }
 
+function listEntry(aIdUser){
+    if (data.users[aIdUser] == undefined) {
+        data.users[aIdUser] = {}
+        return false
+    }
 
+    if (data.users[aIdUser].entry == undefined) {
+        data.users[aIdUser].entry = []
+        return false
+    }
+
+    return data.chp[data.users[aIdUser].chp].entry
+}
 
 function saveData(aNumber){
 
@@ -162,6 +180,8 @@ module.exports = {
     getStorys,
     newEntry,
     setCharaDescription,
-    getCharasByStory
+    getCharasByStory,
+    listEntry
+
 
 }
