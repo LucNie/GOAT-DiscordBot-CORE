@@ -1,7 +1,7 @@
 const cc = require('../../core/console')
 const dataController = require('./functions/dataController');
+const em = require('./functions/embed');
 // discord embed
-const { EmbedBuilder } = require('discord.js');
 
 module.exports = {
     name: 'list-story' ,
@@ -21,13 +21,9 @@ module.exports = {
             text += storys[i].id +": "+ storys[i].name + "\n"
         }
 
-        const embed = new EmbedBuilder()
-            .setTitle("List of storys")
-            .setDescription(text)
-            // white
-            .setColor(0xFFFFFF)
-            // end
+        
 
-        interaction.reply({ embeds: [embed] });
+
+        interaction.reply({ embeds: [em.basic( interaction.user.id, "List of story", text )] });
     }
 }

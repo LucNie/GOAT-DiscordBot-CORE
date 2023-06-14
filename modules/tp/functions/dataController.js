@@ -30,11 +30,11 @@ function getUsers(){
     return data.users
 }
 
-function getchp(id){
+function getChp(id){
     return data.chp[id]
 }
 
-function getchps(){
+function getChps(){
     return data.chp
 }
 
@@ -111,11 +111,11 @@ function newEntry(aIdUser, aText){
 
     data.chp[data.users[aIdUser].chp].entry.push(aText)
     
-    return true;
+    return data.chp[data.users[aIdUser].chp].entry.length + 1;
     
 }
 
-function listEntry(aIdUser){
+function getEntrys(aIdUser){
     if (data.users[aIdUser] == undefined) {
         data.users[aIdUser] = {}
         return false
@@ -130,6 +130,8 @@ function listEntry(aIdUser){
 }
 
 function saveData(aNumber){
+
+    cc.info('tp.dataController.saveData', 'saving data')
 
     switch (aNumber) {
 
@@ -170,8 +172,8 @@ module.exports = {
     getcharas,
     getGroup,
     getGroups,
-    getchp,
-    getchps,
+    getChp,
+    getChps,
     getUser,
     getUsers,
     setStoryUser,
@@ -181,7 +183,8 @@ module.exports = {
     newEntry,
     setCharaDescription,
     getCharasByStory,
-    listEntry
+    getEntrys,
+    saveData
 
 
 }

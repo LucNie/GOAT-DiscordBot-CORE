@@ -1,5 +1,6 @@
 const cc = require('../../core/console')
 const dataController = require('./functions/dataController');
+const em = require('./functions/embed');
 // discord embed
 const { EmbedBuilder } = require('discord.js');
 
@@ -9,7 +10,7 @@ module.exports = {
     options : 0,
     async execute(interaction) {
 
-        const chps = dataController.getchps(); //object
+        const chps = dataController.getChps(); //object
 
         if (chps == undefined) {
             interaction.reply("chapter not found");
@@ -21,14 +22,9 @@ module.exports = {
             text += chps[i].id +": "+ chps[i].title + "\n"
         }
 
-        const embed = new EmbedBuilder()
-            .setTitle("List of chapter")
-            .setDescription(text)
-            // white
-            .setColor(0xFFFFFF)
-            // end
+        
 
-        interaction.reply({ embeds: [embed] });
+        interaction.reply({ embeds: [em.basic( interaction.user.id, "List of chapter", text )] });
 
     }
 }

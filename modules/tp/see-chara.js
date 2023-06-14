@@ -3,8 +3,8 @@ const { EmbedBuilder } = require('discord.js');
 const dataController = require('./functions/dataController');
 
 module.exports = {
-    name: 'chara' ,
-    description: 'see a charactere',
+    name: 'see-chara' ,
+    description: 'see a charactere description',
     options : 1,
     async execute(interaction) {
 

@@ -3,8 +3,8 @@ const { EmbedBuilder } = require('discord.js');
 const dataController = require('./functions/dataController');
 
 module.exports = {
-    name: 'gr' ,
-    description: 'see a groups',
+    name: 'see-group' ,
+    description: 'list all group',
     options : 1,
     async execute(interaction) {
 
