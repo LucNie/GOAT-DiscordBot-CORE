@@ -10,6 +10,12 @@ module.exports = {
     options : 1,
     async execute(interaction) {
 
+        if (interaction.options.getString('option0').length > 1024) {
+            cc.warn('tp.add-entry', 'entry too long')
+            interaction.reply( 'The entry is too long, max 1024 characters');
+            return
+        }
+
         const entry = dataController.newEntry(interaction.user.id, interaction.options.getString('option0'))
 
         if (entry == false) {

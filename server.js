@@ -3,13 +3,16 @@ require('dotenv').config()
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
-const { SlashCommandBuilder, ActivityType,SlashCommandSubcommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, ActivityType,SlashCommandSubcommandBuilder,Options,GatewayIntentBits,Events } = require('discord.js');
 const dataController = require("./core/dataController");
 const cc = require('./core/console')
-const auth = require('./core/autorisationController')
+const auth = require('./core/autorisationController');
+const { channel } = require('diagnostics_channel');
 
 const client = global.client = new Discord.Client({
     intents: 0, //please use eNums as of v14.
+    makeCache: Options.cacheWithLimits(Options.DefaultMakeCacheSettings), 
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions]
 });
 
 client.commands = global.commands = new Discord.Collection();
@@ -64,8 +67,8 @@ client.on('ready', async () => {
     cc.info('Start', 'Bot ' + client.user.tag + ' is ready !')
 
     client.user.setPresence({
-        activities: [{ name: `Galaxy&Co privileges`, type: ActivityType.Playing }],
-        status: 'dnd',
+        activities: [{ name: `TP Officielement en Alpha !!`, type: ActivityType.Playing }],
+        status: 'online'
     });
 
     //register all commands
@@ -77,6 +80,9 @@ client.on('ready', async () => {
 });
 
 client.on('interactionCreate', async interaction => {
+
+
+
     cc.info('interactionCreate', "message recu de " + interaction.user.username + " : " + interaction.commandName);
     if (interaction.isCommand()) {
         const { commandName } = interaction;
