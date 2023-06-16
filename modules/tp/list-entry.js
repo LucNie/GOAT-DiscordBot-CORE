@@ -6,68 +6,66 @@ const em = require('./functions/embed');
 
 const cachedPages = []
 
-function pages(aNumber,interaction){
-    const entrys = dataController.getEntrys( interaction.user.id ); //object
-
+function pages(aNumber, interaction) {
+    const entrys = dataController.getEntrys(interaction.user.id); //object
+  
     if (aNumber < 0) {
-        aNumber = 0
+      aNumber = 0;
     }
-
+  
     if (entrys == undefined) {
-        interaction.reply("entry not found");
-        return;
+      interaction.reply("entry not found");
+      return;
     }
-
+  
     // page system
     let page = 0;
     let charas = 0;
     let startEntry = 0;
-
-    for (let i = 0 ; i < aNumber ; i++) {
-        // if the page is full
-        for (let j = startEntry ; j < entrys.length ; j++) {
-
-            console.log("i:" + i + " j:" + j + " page:" + page + " charas:" + charas)
-            if (entrys[j].length > 1024 ) {
-                cc.error("tp.list-entry", "entry too long 'j' = "+ j)            
-            }
-            
-            if (charas + entrys[j].length > 1024 ) {
-                page++
-                j = entrys.length // exit the loop
-                charas = 0 // reset the charas
-            } else {
-                charas += entrys[j].length // add the charas
-                console.log(tic)
-                startEntry++ // increment the start entry
-            }
-
+    let listEntry = [];
+  
+    for (let i = 0; i < aNumber + 1; i++) {
+      // if the page is full
+      listEntry = [];
+      console.log("tic")
+      for (let j = startEntry; j < entrys.length; j++) {
+        console.log("i:" + i + " j:" + j + " page:" + page + " charas:" + charas + 'aNumber:' + aNumber)
+        
+  
+        if ((entrys[j].length + 10) > 1024) {
+          cc.error("tp.list-entry", "entry too long 'j' = " + j);
         }
-    }
-
-    let text = ""
-    console.log(startEntry)
-
-    for (let i = startEntry ; i < entrys.length ; i++) {
-        if (entrys[i].length > 1024 ) {
-            cc.error("tp.list-entry", "entry too long 'i' = " +i)
-            entrys[i] = entrys[i].substring(0,1020)
-        }
-        if ((text.length + entrys[i].length) > 1024 ) {
-            // exit the loop
-            i = entrys.length
+  
+        if ((charas + 10) + entrys[j].length > 1024) {
+          page++;
+          charas = 0; // reset the charas
+          break; // exit the inner loop
         } else {
-        text += i +": " + entrys[i] + "\n" + "\n"
+          charas += entrys[j].length; // add the charas
+          startEntry++; // increment the start entry
+          listEntry.push(j); // add the entry to the list
+          console.log(listEntry)
         }
+      }
+    }
+  
+    let text = "";
+    console.log("Final" + JSON.stringify(listEntry))
+    for (let i = 0 ; i < listEntry.length; i++) {
+        text += listEntry[i] + "." + entrys[listEntry[i]] + "\n" + "\n";
     }
 
-    if (text == "") {
-        text = "no entry"
+    if (text.length > 1024) {
+        cc.error("tp.list-entry", "text too long");
+        text = text.substring(0, 1024);
     }
 
-    return text
-
-}
+    if(text == "") {
+        text = "no entry found"
+    }
+  
+    return text;
+  }
 
 module.exports = {
     name: 'list-entry' ,

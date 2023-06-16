@@ -129,6 +129,26 @@ function getEntrys(aIdUser){
     return data.chp[data.users[aIdUser].chp].entry
 }
 
+function deleteEntry(aIdUser, aNumber){
+    if (data.users[aIdUser] == undefined) {
+        data.users[aIdUser] = {}
+        return false
+    }
+
+    if (data.users[aIdUser].entry == undefined) {
+        data.users[aIdUser].entry = []
+        return false
+    }
+
+    if (data.users[aIdUser].entry[aNumber] == undefined) {
+        return false
+    }
+
+    data.users[aIdUser].entry.splice(aNumber, 1)
+    return true
+}
+
+
 function saveData(aNumber){
 
     cc.info('tp.dataController.saveData', 'saving data')
@@ -184,7 +204,8 @@ module.exports = {
     setCharaDescription,
     getCharasByStory,
     getEntrys,
-    saveData
+    saveData,
+    deleteEntry
 
 
 }
