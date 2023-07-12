@@ -10,7 +10,7 @@ async function nekoEmbed(aApiEndPoint,sfw){
         result = await neko.sfw[aApiEndPoint]();
         reaction = "nyaa";
     } else {
-        result =  await eko.nsfw[aApiEndPoint]();
+        result = await neko.nsfw[aApiEndPoint]();
         reaction = "u-ummm >///<";
     }
         
