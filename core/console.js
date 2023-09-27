@@ -1,31 +1,39 @@
 /* MODULE NOT USED YET */
 require('dotenv').config()
 
+function time(){
+    let date = new Date()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
+    let seconds = date.getSeconds()
+    return `${hours}:${minutes}:${seconds}`
+}
+
+
 function log(text) {
     console.log(text)
 }
 function debug(text) {
     // blue
-    console.log(`\x1b[34m{DEBUG} ${text} \x1b[0m`)
+    console.log(time() + `\x1b[34m{DEBUG} ${text} \x1b[0m`)
 }
 function info(identification,text) {
     // green
-    console.log('\x1b[32m{info} [' + identification + '] \x1b[0m'  + text )
+    console.log(time() +'\x1b[32m{info} [' + identification + '] \x1b[0m'  + text )
 }
 function warn(identification,text) {
     // yellow
-    console.log('\x1b[33m{!WARNING!}['+ identification + '] \x1b[0m' + text)
+    console.log(time() +'\x1b[33m{!WARNING!}['+ identification + '] \x1b[0m' + text)
 }
 function error(identification,text) {
     // red
-    console.log('\x1b[31m{ERROR} ['+ identification + '] \x1b[0m' + text)
+    console.log(time() +'\x1b[31m{ERROR} ['+ identification + '] \x1b[0m' + text)
 }
 function fatal(identification,text) {
     // red
-    console.log('\x1b[31m{FATAL} ['+ identification + '] \x1b[0m' + text)
+    console.log(time() +'\x1b[31m{FATAL} ['+ identification + '] \x1b[0m' + text)
     process.exit(1)
 }
-
 
 module.exports = {
     log,

@@ -81,13 +81,11 @@ client.on('ready', async () => {
 
 client.on('interactionCreate', async interaction => {
 
-
-
-    cc.info('interactionCreate', "message recu de " + interaction.user.username + " : " + interaction.commandName);
     if (interaction.isCommand()) {
         const { commandName } = interaction;
         const command = client.commands.get(commandName);
         // if (!command) return;
+        cc.info('interactionCreate', "message recu de " + interaction.user.username + " : " + interaction.commandName);
         try {
             cc.debug(interaction.user.id)
             if (auth.isWhiteListed(exCommands[commandName.toLocaleLowerCase()][interaction.options.getSubcommand()].auth, interaction.user.id)) {
@@ -100,19 +98,26 @@ client.on('interactionCreate', async interaction => {
             interaction.reply({ content: 'There was an error while executing this command!', ephemeral: false });
         }
 
-    } else if (interaction.isButton()) {
+    } else if (interaction.isButton() && interaction.channel.isText()) {
+        try {
+        cc.debug("button recu de " + interaction.user.username + " : " + interaction.customId);
         //get button id
         const buttonId = interaction.customId;
         //get module name
         const moduleName = buttonId.split("_")[0];
         //get command name
         const commandName = buttonId.split("_")[1];
-        try {
-            await exCommands[moduleName.toLocaleLowerCase()][commandName.toLocaleLowerCase()].buttonExecute(interaction, dataController);
+        //get indice of button
+        const indice = buttonId.split("_")[2];
+        
+            await exCommands[moduleName.toLocaleLowerCase()][commandName.toLocaleLowerCase()].buttonExecute(interaction, indice);
         } catch (error) {
             console.error(error);
             await interaction.reply({ content: 'There was an error while executing this button!', ephemeral: true });
         }
+    } else {
+        cc.error("interactionCreate", "interaction is not a command or a button")
+        interaction.reply({ content: 'There was an error while executing this interaction!', ephemeral: true });
     }
 });
 

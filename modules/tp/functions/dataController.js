@@ -38,7 +38,6 @@ function getChps(){
     return data.chp
 }
 
-
 function getGroup(id){
     return data.groups[id]
 }
